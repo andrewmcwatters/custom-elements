@@ -1,26 +1,39 @@
-'use strict';
+// https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements
+// Create a class for the element
+class LikeButton extends HTMLElement {
+  static get observedAttributes() { return ['liked']; }
 
-const e = React.createElement;
+  constructor() {
+    // Always call super first in constructor
+    super();
 
-class LikeButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { liked: false };
+    this.liked = false;
+
+    // Create a shadow root
+    /* const shadow = */ this.attachShadow({mode: 'open'});
+    this.render();
+  }
+
+  get liked() { return this.hasAttribute('liked'); }
+  set liked(state) { this.toggleAttribute('liked', Boolean(state)); }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    this.render();
   }
 
   render() {
-    if (this.state.liked) {
-      return 'You liked this.';
+    const shadow = this.shadowRoot;
+
+    if (this.liked) {
+      shadow.innerHTML = 'You liked this.'
+      return;
     }
 
-    return e(
-      'button',
-      { onClick: () => this.setState({ liked: true }) },
-      'Like'
-    );
+    shadow.innerHTML = `<button onclick="this.parentNode.host.liked = true;">
+  Like
+</button>`;
   }
 }
 
-const domContainer = document.querySelector('#like_button_container');
-const root = ReactDOM.createRoot(domContainer);
-root.render(e(LikeButton));
+// Define the new element
+customElements.define('like-button', LikeButton);
