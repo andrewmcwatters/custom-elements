@@ -11,13 +11,16 @@ class LikeButton extends HTMLElement {
 
     // Create a shadow root
     /* const shadow = */ this.attachShadow({mode: 'open'});
-    this.render();
   }
 
   get liked() { return this.hasAttribute('liked'); }
   set liked(state) { this.toggleAttribute('liked', Boolean(state)); }
 
   attributeChangedCallback(name, oldValue, newValue) {
+    this.render();
+  }
+
+  connectedCallback() {
     this.render();
   }
 
