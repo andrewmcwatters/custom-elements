@@ -8,6 +8,7 @@ class MyComponent extends HTMLElement {
 
   connectedCallback() {
     this.attachShadow({mode: 'open'});
+    this.render();
 
     fetch("https://api.example.com/items")
       .then(res => res.json())
