@@ -1,8 +1,6 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements
 // Create a class for the element
 class LikeButton extends HTMLElement {
-  static get observedAttributes() { return ['liked']; }
-
   constructor() {
     // Always call super first in constructor
     super();
@@ -13,10 +11,8 @@ class LikeButton extends HTMLElement {
     /* const shadow = */ this.attachShadow({mode: 'open'});
   }
 
-  get liked() { return this.hasAttribute('liked'); }
-  set liked(state) { this.toggleAttribute('liked', Boolean(state)); }
-
-  attributeChangedCallback(name, oldValue, newValue) {
+  setLiked(value) {
+    this.liked = value;
     this.render();
   }
 
@@ -32,7 +28,7 @@ class LikeButton extends HTMLElement {
       return;
     }
 
-    shadow.innerHTML = `<button onclick="this.parentNode.host.liked = true;">
+    shadow.innerHTML = `<button onclick="this.parentNode.host.setLiked(true)">
   Like
 </button>`;
   }
