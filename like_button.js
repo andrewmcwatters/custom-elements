@@ -9,6 +9,9 @@ class LikeButton extends HTMLElement {
 
     // Create a shadow root
     /* const shadow = */ this.attachShadow({mode: 'open'});
+  }
+
+  connectCallback() {
     this.render();
   }
 
