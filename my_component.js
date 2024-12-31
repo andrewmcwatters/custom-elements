@@ -4,12 +4,11 @@ class MyComponent extends HTMLElement {
     this.error = null;
     this.isLoaded = false;
     this.items = [];
+    this.attachShadow({mode: 'open'});
+    this.render();
   }
 
   connectedCallback() {
-    this.attachShadow({mode: 'open'});
-    this.render();
-
     fetch("https://api.example.com/items")
       .then(res => res.json())
       .then(

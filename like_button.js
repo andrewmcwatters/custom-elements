@@ -2,6 +2,8 @@ class LikeButton extends HTMLElement {
   constructor() {
     super();
     this.liked = false;
+    this.attachShadow({mode: 'open'});
+    this.render();
   }
 
   setLiked(value) {
@@ -10,8 +12,6 @@ class LikeButton extends HTMLElement {
   }
 
   connectCallback() {
-    this.attachShadow({mode: 'open'});
-    this.render();
   }
 
   render() {
