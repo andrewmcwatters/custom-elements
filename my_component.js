@@ -31,7 +31,7 @@ class MyComponent extends HTMLElement {
   render() {
     const { error, isLoaded, items, shadowRoot } = this;
     if (error) {
-      shadowRoot.innerHTML = `<div>Error: {error.message}</div>`;
+      shadowRoot.innerHTML = `<div>Error: ${error.message}</div>`;
     } else if (!isLoaded) {
       shadowRoot.innerHTML = `<div>Loading...</div>`;
     } else {
