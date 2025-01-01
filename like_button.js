@@ -11,7 +11,7 @@ class LikeButton extends HTMLElement {
     this.render();
   }
 
-  connectCallback() {
+  connectedCallback() {
   }
 
   render() {
