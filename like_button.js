@@ -18,11 +18,11 @@ class LikeButton extends HTMLElement {
     const { liked, shadowRoot } = this;
 
     if (liked) {
-      shadowRoot.innerHTML = 'You liked this.'
+      shadowRoot.innerHTML = /* html */ 'You liked this.'
       return;
     }
 
-    shadowRoot.innerHTML = `<button onclick="this.getRootNode().host.setLiked(true)">
+    shadowRoot.innerHTML = /* html */ `<button onclick="this.getRootNode().host.setLiked(true)">
   Like
 </button>`;
   }
